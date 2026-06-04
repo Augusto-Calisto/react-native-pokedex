@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "Pokedex",
+    "slug": "Pokedex",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/pokeball-icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/pokeball-splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#bf1e2e"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/pokeball-splash.png",
+        "backgroundColor": "#bf1e2e"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.devgusto.Pokedex"
+    },
+    "web": {
+      "favicon": "./assets/pokeball-icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "18433acc-a307-4be6-b530-d64096b3c5fd"
+      }
+    }
+  }
+}
