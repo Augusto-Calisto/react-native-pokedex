@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FlatList, Platform, StyleSheet } from "react-native"
 
 import LoadingPokemons from "./LoadingPokemons";
@@ -8,11 +8,32 @@ import { PokemonCard } from "./PokemonCard";
 import { usePokemons } from "../hooks/usePokemons";
 
 
-export default function PokemonList({ pokemons }) {
+export default function PokemonList({ pokemons, scrollToTop }) {
 
-    // Hooks
+    // ------------------------- Hooks ---------------------------------------
     const { fetchNextPage, hasNextPage, isFetchingNextPage } = usePokemons();
 
+
+    // ------------------------- Refs ----------------------------------------
+    const flatListRef = useRef(null);
+
+
+    // ------------------------- Effects -------------------------------------
+    useEffect(() => {
+        if(scrollToTop) {
+            irParaOTopo();
+        }
+    }, [scrollToTop]);
+
+
+    // ------------------------- Funções --------------------------------------
+    const irParaOTopo = () => {
+        flatListRef.current?.scrollToOffset({ 
+            offset: 0,
+            animated: true
+        });
+    };
+    
     const buscarProximaRemessaPokemons = () => {
         if(hasNextPage && !isFetchingNextPage) {
             fetchNextPage();
@@ -52,6 +73,7 @@ export default function PokemonList({ pokemons }) {
     return (
         <React.Fragment>
             <FlatList
+                ref={flatListRef}
                 data={pokemons}
                 renderItem={renderizarPokemon}
                 keyExtractor={(item, index) => String(index)}

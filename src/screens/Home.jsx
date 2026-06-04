@@ -19,6 +19,7 @@ export default function Home() {
     const [pokemons, setPokemons] = useState([]);
     const [tipoPokemons, setTipoPokemons] = useState(null);
 	const [isModoBusca, setIsModoBusca] = useState(false);
+	const [scrollToOffset, setScrollToOffset] = useState(false);
 
 
     // -------------------------- Hooks ---------------------------------
@@ -66,8 +67,14 @@ export default function Home() {
 		}
 	}
 
-    const handleTypeChange = (tipo) => {
+    const handleMudancaTipoPokemons = (tipo) => {
 		setTipoPokemons(tipo);
+
+		setTimeout(() => {
+			setScrollToOffset(false);
+		}, 3000);
+
+		setScrollToOffset(true);
 	};
 
     const totalPokemons = useMemo(() => {
@@ -100,12 +107,15 @@ export default function Home() {
 				{!isModoBusca && (
 					<TypeFilter
 						tipoSelecionado={tipoPokemons}
-						onTipoSelecionado={(tipo) => handleTypeChange(tipo)}
+						onTipoSelecionado={(tipo) => handleMudancaTipoPokemons(tipo)}
 					/>
 				)}
 			</LinearGradient>
 
-            <PokemonList pokemons={pokemons}/>
+            <PokemonList
+				pokemons={pokemons}
+				scrollToTop={scrollToOffset}
+			/>
         </View>
     )
 }
