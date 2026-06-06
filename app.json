@@ -10,15 +10,15 @@
     "splash": {
       "image": "./assets/pokeball-splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#bf1e2e"
+      "backgroundColor": "#bf2030"
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/pokeball-splash.png",
-        "backgroundColor": "#bf1e2e"
+        "foregroundImage": "./assets/pokeball-icon.png",
+        "backgroundColor": "#bf2030"
       },
       "edgeToEdgeEnabled": true,
       "package": "com.devgusto.Pokedex"
