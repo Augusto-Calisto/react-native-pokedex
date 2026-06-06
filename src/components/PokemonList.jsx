@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { FlatList, Platform, StyleSheet } from "react-native"
+import { FlatList, Platform, StyleSheet } from "react-native";
 
 import LoadingPokemons from "./LoadingPokemons";
 import EmptyListPokemons from "./EmptyListPokemons";
@@ -7,8 +7,7 @@ import { PokemonCard } from "./PokemonCard";
 
 import { usePokemons } from "../hooks/usePokemons";
 
-
-export default function PokemonList({ pokemons, scrollToTop }) {
+export default function PokemonList({ pokemons, scrollToTop=false }) {
 
     // ------------------------- Hooks ---------------------------------------
     const { fetchNextPage, hasNextPage, isFetchingNextPage } = usePokemons();
@@ -71,27 +70,25 @@ export default function PokemonList({ pokemons, scrollToTop }) {
     }
 
     return (
-        <React.Fragment>
-            <FlatList
-                ref={flatListRef}
-                data={pokemons}
-                renderItem={renderizarPokemon}
-                keyExtractor={(item, index) => String(index)}
-                onEndReached={buscarProximaRemessaPokemons}
-                onEndReachedThreshold={0.5}
-                ListEmptyComponent={<EmptyListPokemons/>}
-                ListFooterComponent={<LoadingPokemons/>}
-                numColumns={2}
-                showsVerticalScrollIndicator={true}
-                removeClippedSubviews={Platform.OS === "android"}
-                maxToRenderPerBatch={10}
-                windowSize={5}
-                contentContainerStyle={[
-                    styles.list,
-                    pokemons.length === 0 && styles.listEmpty,
-                ]}
-            />
-        </React.Fragment>
+        <FlatList
+            ref={flatListRef}
+            data={pokemons}
+            renderItem={renderizarPokemon}
+            keyExtractor={(item, index) => String(index)}
+            onEndReached={buscarProximaRemessaPokemons}
+            onEndReachedThreshold={0.5}
+            ListEmptyComponent={<EmptyListPokemons/>}
+            ListFooterComponent={<LoadingPokemons/>}
+            numColumns={2}
+            showsVerticalScrollIndicator={true}
+            removeClippedSubviews={Platform.OS === "android"}
+            maxToRenderPerBatch={10}
+            windowSize={5}
+            contentContainerStyle={[
+                styles.list,
+                pokemons.length === 0 && styles.listEmpty,
+            ]}
+        />
     )
 }
 
