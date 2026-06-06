@@ -100,7 +100,9 @@ export function SearchBar({ isModoBusca, onCallbackReceberPokemons, onCallbackRe
 					onFocus={handleFocus}
 					autoCorrect={false}
 					autoCapitalize="none"
+					returnKeyType="search"
 					enablesReturnKeyAutomatically={false}
+					onSubmitEditing={() => buscarPokemonPelaPesquisa(true)}
 				/>
 
 				{valorPesquisa.length > 0 && (
